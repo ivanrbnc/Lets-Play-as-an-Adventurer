@@ -115,7 +115,7 @@ def citadel_heal(player):
     player.stamina = player.max_stamina
     player.mana = player.max_mana
 
-def current_monster(monster_name):
+def find_current_monster(monster_name):
     # Get the specific stats for the chosen monster
     if monster_name == "Weak Goblin":
         current_monster = Monster(monster_name, 100, 25, 55, 5, 15, 3)

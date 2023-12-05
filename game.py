@@ -45,7 +45,7 @@ def main():
             current_area = menus[choice]
             monster_name = random.choice(current_area["monsters"])
 
-            current_monster(monster_name)
+            current_monster = find_current_monster(monster_name)
 
             # Error in inputs
             if current_monster == None:
