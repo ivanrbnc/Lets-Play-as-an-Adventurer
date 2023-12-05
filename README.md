@@ -5,7 +5,7 @@ Let's Play as an Adventurer! is a turn-based game that let you explore various a
 
 ## How to run
 1. Download Python
-2. Run the `game.py`
+2. Run `game.py` file
 
 ## Patch
 ### Current: 1.0.0
