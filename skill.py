@@ -13,9 +13,12 @@ class Skill:
 punch = Skill("Punch", 0.5, 0, 0.0, 0)
 
 # Player
-stab = Skill("Stab", 0.35, 25, 0.0, 0)
-wish = Skill("Wish", 0.0, 0, 0.35, 25)
+stab = Skill("Stab", 0.35, 5, 0.0, 0)
+wish = Skill("Wish", 0.0, 0, 0.35, 5)
 
 # Monster
-bite = Skill("Bite", 0.15, 15, 0.0, 0)
-smash = Skill("Smash", 0.25, 25, 0.0, 0)
+bite = Skill("Bite", 0.15, 5, 0.0, 0)
+smash = Skill("Smash", 0.25, 5, 0.0, 0)
+
+
+heart_curse = Skill("Heart Curse", 0.5, 25, 0.5, 25)

@@ -16,31 +16,19 @@ def main():
         player = Player(username)
         save_game(player)    
 
-    menus = {
-        1: citadel,
-        2: brook_forest,
-        3: slime_mountain,
-        4: fishman_beach,
-        5: graveyard,
-        6: "Show Current Stats",
-        7: "Save and Quit"
-    }
+    choice = choose_menu(menus.values())
 
-    choice = choose_menu()
-
-    while player.hp > 0:
-
+    while True:
         if choice == 1:  # Citadel
             citadel_heal(player)  # Player can choose to heal in the Citadel
             print("Healing in Citadel...\n")
-            choice = choose_menu()
-        elif choice == 6: # Current stats
+            choice = choose_menu(menus.values())
+        elif choice == 7: # Current stats
             player.display_stats()
-            choice = choose_menu()
-        elif choice == 7:  # Save and Quit
+            choice = choose_menu(menus.values())
+        elif choice == 8:  # Save and Quit
             save_game(player)
             print("Game saved. Quitting.")
-            should_quit = True  # Set a variable to indicate that the player wants to quit
             break
         elif choice in menus: # In one of the hunting grounds
             current_area = menus[choice]
@@ -58,17 +46,12 @@ def main():
             elif moving == None:
                 save_game(player)
                 print("Game saved. Quitting.")
-                should_quit = True  # Set a variable to indicate that the player wants to quit
                 break
             elif moving == False:
                 print("Staying in the current area.")
         else:
             print("Invalid area choice.")
             continue
-
-    if should_quit:
-        # Additional cleanup or farewell message can be added here
-        pass
 
 if __name__ == "__main__":
     main()

@@ -9,14 +9,14 @@ class Player:
         self.xp = 0
         self.max_hp = 100
         self.hp = 100
-        self.strength = 100
-        self.max_stamina = 100
-        self.stamina = 100
-        self.magic = 100
-        self.max_mana = 100
-        self.mana = 100
-        self.agility = 100
-        self.defense = 100
+        self.strength = 25
+        self.max_stamina = 50
+        self.stamina = 50
+        self.magic = 25
+        self.max_mana = 50
+        self.mana = 50
+        self.agility = 50
+        self.defense = 25
         self.luck = 100
         self.skills = [punch, stab, wish]
         
