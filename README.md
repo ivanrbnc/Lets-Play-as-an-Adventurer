@@ -8,13 +8,13 @@ Let's Play as an Adventurer! is a turn-based game that let you explore various a
 2. Run `game.py` file
 
 ## Patch
-### Current: 1.0.0
+### Current: 1.0.1
+1.0.1: Basic monster skill applied
 1.0.0: Basic feature including save, damage, areas, and stats.
 
 ## Ideas for Upcoming Updates
 * Monster Drops and Inventory
 * Weapon and Items
-* Monster Skills
 * More Hunting Grounds
 * More Player Skills
 * Quests

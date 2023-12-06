@@ -1,7 +1,8 @@
-import random
-from player import Player
+from player import *
 from save_load import save_game, load_game
 from utils import *
+from area import *
+from skill import *
 
 def main():
     # Try to load player data from the save file
@@ -16,11 +17,11 @@ def main():
         save_game(player)    
 
     menus = {
-        1: "Citadel",
-        2: {"name": "Brook Forest", "monsters": ["Weak Goblin", "Spear Goblin", "Bow Goblin"]},
-        3: {"name": "Slime Mountain", "monsters": ["Slime", "Slimemorph"]},
-        4: {"name": "Fishman Beach", "monsters": ["Weak Fishman", "Spear Fishman", "Bow Fishman"]},
-        5: {"name": "Graveyard", "monsters": ["Weak Skeleton", "Armored Skeleton"]},
+        1: citadel,
+        2: brook_forest,
+        3: slime_mountain,
+        4: fishman_beach,
+        5: graveyard,
         6: "Show Current Stats",
         7: "Save and Quit"
     }
@@ -43,9 +44,8 @@ def main():
             break
         elif choice in menus: # In one of the hunting grounds
             current_area = menus[choice]
-            monster_name = random.choice(current_area["monsters"])
 
-            current_monster = find_current_monster(monster_name)
+            current_monster = current_area.choose_random_monster()
 
             # Error in inputs
             if current_monster == None:

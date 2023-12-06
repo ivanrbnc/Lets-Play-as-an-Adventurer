@@ -1,3 +1,6 @@
+from skill import *
+from utils import *
+
 class Player:
     def __init__(self, username):
         self.username = username
@@ -15,8 +18,8 @@ class Player:
         self.agility = 100
         self.defense = 100
         self.luck = 100
-        self.skills = ["Punch", "Stab", "Wish"]
-
+        self.skills = [punch, stab, wish]
+        
     def display_stats(player):
         print("\nPlayer Stats:")
         print(f"Username: {player.username}")
@@ -50,4 +53,3 @@ class Player:
             player.luck += 5
 
             print("You have leveled up! Current level: " + str(player.level) + "\n")
-            

@@ -1,48 +1,46 @@
 import random
-from monster import Monster
+from skill import *
 
 def display_menu(options):
     for i, option in enumerate(options, 1):
         print(f"{i}. {option}")
 
+def choose_menu():
+    menus = ["Citadel", "Brook Forest", "Slime Mountain", "Fishman Beach", "Graveyard", "Show Current Stats", "Save and Quit"]
+    print("Choose an area:")
+    display_menu(menus)
+    return get_numeric_input("Enter the number of the area: ", 1, len(menus))
+
+def choose_skill(player):
+    display_menu(player.skills)
+    skill_index = get_numeric_input("Enter the number of the skill: ", 1, len(player.skills))
+    choosen_skill_name = player.skills[skill_index - 1]
+    return book_of_skill.get(choosen_skill_name)
+
 def player_attack(player, monster, skill):
-    damage = calculate_damage(player, skill)
+    damage = calculate_damage(player, skill, monster)
     monster.hp -= damage
     attack_log = f"{player.username} used {skill} and dealt {damage} damage to {monster.name}. {monster.name}'s HP: {monster.hp}"
     print(attack_log)
     return attack_log
 
 def monster_attack(player, monster):
-    # For simplicity, monster's attack is a basic one
-    damage = calculate_damage(monster, "Basic Attack")
+    choosen_skill = monster.choose_random_skill()
+    damage = calculate_damage(monster, choosen_skill, player)
     player.hp -= damage
-    monster_attack_log = f"{monster.name} used Basic Attack and dealt {damage} damage to {player.username}. {player.username}'s HP: {player.hp}"
+    monster_attack_log = f"{monster.name} used {choosen_skill} and dealt {damage} damage to {player.username}. {player.username}'s HP: {player.hp}"
     print(monster_attack_log)
     return monster_attack_log
 
-def calculate_damage(character, skill):
-    base_damage = character.strength * 0.15
+def calculate_damage(character, skill, target):    
+    if (character.stamina < skill.stamina_cost or character.mana < skill.mana_cost):
+        skill = punch
 
-    # Skill set for player
-    if skill == "Stab":
-        if character.stamina < 25:
-            skill = "Punch"
-        else:
-            character.stamina -= 25
-            if character.stamina < 0:
-                character.stamina = 0
-            base_damage = character.strength * 0.55
+    base_damage = character.strength * skill.base_strength_percentage + character.magic * skill.base_magic_percentage
+    character.stamina -= skill.stamina_cost
+    character.mana -= skill.mana_cost
 
-    elif skill == "Wish":
-        if character.mana < 25:
-            skill = "Punch"
-        else:
-            character.mana -= 25
-            if character.mana < 0:
-                character.mana = 0
-            base_damage = character.magic * 0.55    
-
-    total_damage = base_damage + random.randint(-5, 5)  # Add some randomness
+    total_damage = base_damage + random.randint(-5, 5) - target.defense * 0.25
     return int(max(0, total_damage))  # Ensure damage is non-negative
 
 def get_numeric_input(prompt, min_value, max_value):
@@ -56,12 +54,6 @@ def get_numeric_input(prompt, min_value, max_value):
         except ValueError:
             print("Invalid input. Please enter a number.")
 
-def choose_menu():
-    menus = ["Citadel", "Brook Forest", "Slime Mountain", "Fishman Beach", "Graveyard", "Show Current Stats", "Save and Quit"]
-    print("Choose an area:")
-    display_menu(menus)
-    return get_numeric_input("Enter the number of the area: ", 1, len(menus))
-
 def battle(player, monster):
     print(f"\nBattle Start: {player.username} vs {monster.name}")
     combat_log = []
@@ -69,17 +61,9 @@ def battle(player, monster):
     while player.hp > 0 and monster.hp > 0:
         # Player's turn
         print("\nPlayer's Turn:")
-        display_menu(player.skills)
-        choice = get_numeric_input("Choose a skill: ", 1, len(player.skills))
+        chosen_skill = choose_skill(player)
 
-        # Perform player's action
-        if choice == 1:
-            attack_log = player_attack(player, monster, "Punch")
-        elif choice == 2:
-            attack_log = player_attack(player, monster, "Stab")
-        elif choice == 3:
-            attack_log = player_attack(player, monster, "Wish")
-
+        attack_log = player_attack(player, monster, chosen_skill)
         combat_log.append(attack_log)
 
         # Monster's turn
@@ -94,11 +78,13 @@ def battle(player, monster):
     elif monster.hp <= 0:
         combat_log.append(f"You defeated {monster.name}! Gained {monster.xp_reward} XP.")
         player.xp += monster.xp_reward
-        player.check_exp()
 
     print("\nCombat Log:")
     for log_entry in combat_log:
         print(log_entry)
+    
+    # Checking if the player leveled up
+    player.check_exp()
 
     area_choice = choose_menu()
     if area_choice == 1:  # Citadel
@@ -114,30 +100,3 @@ def citadel_heal(player):
     player.hp = player.max_hp
     player.stamina = player.max_stamina
     player.mana = player.max_mana
-
-def find_current_monster(monster_name):
-    # Get the specific stats for the chosen monster
-    if monster_name == "Weak Goblin":
-        current_monster = Monster(monster_name, 100, 25, 55, 5, 15, 3)
-    elif monster_name == "Spear Goblin":
-        current_monster = Monster(monster_name, 100, 35, 55, 8, 11, 5)
-    elif monster_name == "Bow Goblin":
-        current_monster = Monster(monster_name, 100, 45, 35, 3, 7, 5)
-    elif monster_name == "Slime":
-        current_monster = Monster(monster_name, 55, 5, 5, 5, 5, 3)
-    elif monster_name == "Slimemorph":
-        current_monster = Monster(monster_name, 75, 15, 15, 15, 15, 8)
-    elif monster_name == "Weak Fishman":
-        current_monster = Monster(monster_name, 100, 25, 55, 5, 15, 3)
-    elif monster_name == "Spear Fishman":
-        current_monster = Monster(monster_name, 100, 35, 55, 8, 11, 5)
-    elif monster_name == "Bow Fishman":
-        current_monster = Monster(monster_name, 100, 45, 35, 3, 7, 5)
-    elif monster_name == "Weak Skeleton":
-        current_monster = Monster(monster_name, 25, 15, 15, 8, 3, 2)
-    elif monster_name == "Armored Skeleton":
-        current_monster = Monster(monster_name, 75, 35, 25, 8, 25, 15)
-    else:
-        print("Invalid monster choice.")
-        return None
-    return current_monster
