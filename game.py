@@ -9,11 +9,11 @@ def main():
     player = load_game()
 
     if player is not None:
-        print(f"Welcome back, {player.username}!")
+        print(f"Welcome back, {player.name}!")
     else:
         # If the save file doesn't exist, create a new player
-        username = input("Enter your adventurer's name: ")
-        player = Player(username)
+        name = input("Enter your adventurer's name: ")
+        player = Player(name)
         save_game(player)    
 
     choice = choose_menu(menus.values())
@@ -21,7 +21,7 @@ def main():
     while True:
         if choice == 1:  # Citadel
             citadel_heal(player)  # Player can choose to heal in the Citadel
-            print("Healing in Citadel...\n")
+            print("Healing in Citadel...")
             choice = choose_menu(menus.values())
         elif choice == 7: # Current stats
             player.display_stats()
@@ -31,9 +31,13 @@ def main():
             print("Game saved. Quitting.")
             break
         elif choice in menus: # In one of the hunting grounds
-            current_area = menus[choice]
+            if choice == 6: # Boss Pick
+                chosen_tier = choose_boss_tier(boss_menus)
+                current_monster = chosen_tier.choose_random_monster()
+            else:
+                current_area = menus[choice]
 
-            current_monster = current_area.choose_random_monster()
+                current_monster = current_area.choose_random_monster()
 
             # Error in inputs
             if current_monster == None:

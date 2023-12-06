@@ -18,4 +18,7 @@ brook_forest = Area("Brook Forest", [weak_goblin, spear_goblin, bow_goblin], [0.
 slime_mountain = Area("Slime Mountain", [slime, slimemorph], [0.8, 0.2])
 fishman_beach = Area("Fishman Beach", [weak_fishman, spear_fishman, bow_fishman], [0.6, 0.2, 0.2])
 graveyard = Area("Graveyard", [weak_skeleton, armored_skeleton], [0.9, 0.1])
-boss_floor = Area("Boss Floor", [dark_knight], [1])
+
+boss_dimension = Area("Boss Dimension", [], [])
+dark_mage_floor = Area("Dark Mage Floor", [dark_mage], [1])
+dark_knight_floor = Area("Dark Knight Floor", [dark_knight], [1])

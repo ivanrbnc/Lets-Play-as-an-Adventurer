@@ -10,15 +10,25 @@ class Skill:
         return self.name
 
 # Base Skill For All
-punch = Skill("Punch", 0.5, 0, 0.0, 0)
+punch = Skill("Punch", 0.1, 0, 0.0, 0)
 
 # Player
 stab = Skill("Stab", 0.35, 5, 0.0, 0)
 wish = Skill("Wish", 0.0, 0, 0.35, 5)
+flee = Skill("Flee", 0.0, 0, 0.0, 0)
 
 # Monster
-bite = Skill("Bite", 0.15, 5, 0.0, 0)
-smash = Skill("Smash", 0.25, 5, 0.0, 0)
+bite = Skill("Bite", 0.15, 2, 0.0, 0)
+smash = Skill("Smash", 0.25, 3, 0.0, 0)
+shoot = Skill("Shoot", 0.35, 5, 0.0, 0)
+spear_throwing = Skill("Spear Throwing", 0.4, 6, 0.0, 0)
+gulping = Skill("Gulping", 0.2, 3, 0.0, 0)
+delusion = Skill("Delusion", 0.0, 0, 0.4, 6)
+bone_torner = Skill("Bone Torner", 0.2, 3, 0.0, 0)
+bone_spike = Skill("Bone Spike", 0.45, 6, 0.0, 0)
 
-
-heart_curse = Skill("Heart Curse", 0.5, 25, 0.5, 25)
+# Boss Level
+lesser_dark_hit = Skill("Lesser Dark Hit", 0.3, 5, 0.0, 0)
+lesser_curse = Skill("Lesser Curse", 0.55, 21, 0.3, 25)
+dark_dimension = Skill("Dark Dimension", 1.0, 25, 0.0, 0)
+heart_curse = Skill("Heart Curse", 0.75, 21, 0.5, 25)

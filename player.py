@@ -2,27 +2,27 @@ from skill import *
 from utils import *
 
 class Player:
-    def __init__(self, username):
-        self.username = username
+    def __init__(self, name):
+        self.name = name
         self.level = 1
         self.require_to_level_up = 100
         self.xp = 0
-        self.max_hp = 100
-        self.hp = 100
-        self.strength = 25
-        self.max_stamina = 50
-        self.stamina = 50
-        self.magic = 25
-        self.max_mana = 50
-        self.mana = 50
-        self.agility = 50
+        self.max_hp = 95
+        self.hp = 95
+        self.strength = 35
+        self.max_stamina = 75
+        self.stamina = 75
+        self.magic = 35
+        self.max_mana = 75
+        self.mana = 75
+        self.agility = 30
         self.defense = 25
         self.luck = 100
-        self.skills = [punch, stab, wish]
+        self.skills = [stab, wish, flee]
         
     def display_stats(player):
         print("\nPlayer Stats:")
-        print(f"Username: {player.username}")
+        print(f"Username: {player.name}")
         print(f"Level: {player.level}")
         print(f"XP: {player.xp}")
         print(f"HP: {player.hp}")
@@ -40,16 +40,17 @@ class Player:
         if player.xp > player.require_to_level_up:
             player.level += 1
             player.xp = 0
-            player.strength += 5
-            player.max_hp += 5
+            player.require_to_level_up *= 1.5
+            player.strength += 10
+            player.max_hp += 10
             player.hp = player.max_hp
-            player.max_stamina += 5
+            player.max_stamina += 10
             player.stamina = player.max_stamina
-            player.magic += 5
-            player.max_mana += 5
+            player.magic += 10
+            player.max_mana += 10
             player.mana = player.max_mana
-            player.agility += 5
-            player.defense += 5
-            player.luck += 5
+            player.agility += 10
+            player.defense += 10
+            player.luck += 10
 
             print("You have leveled up! Current level: " + str(player.level) + "\n")

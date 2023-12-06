@@ -29,14 +29,16 @@ class Monster:
     def __str__(self):
         return self.name
 
-weak_goblin = Monster("Weak Goblin", 100, 25, 55, 0, 0, 5, 15, 3, [bite, smash])
-spear_goblin = Monster("Spear Goblin", 100, 35, 55, 0, 0, 8, 11, 5, [bite, smash])
-bow_goblin = Monster("Bow Goblin", 100, 45, 35, 0, 0, 3, 7, 5, [bite, smash])
-slime = Monster("Slime", 55, 5, 5, 0, 0, 5, 5, 3, [bite, smash])
-slimemorph = Monster("Slimemorph", 75, 15, 15, 0, 0, 15, 15, 8, [bite, smash])
-weak_fishman = Monster("Weak Fishman", 100, 25, 55, 0, 0, 5, 15, 3, [bite, smash])
-spear_fishman = Monster("Spear Fishman", 100, 35, 55, 0, 0, 8, 11, 5, [bite, smash])
-bow_fishman = Monster("Bow Fishman", 100, 45, 35, 0, 0, 3, 7, 5, [bite, smash])
-weak_skeleton = Monster("Weak Skeleton", 25, 15, 15, 0, 0, 8, 3, 2, [bite, smash])
-armored_skeleton = Monster("Armored Skeleton", 75, 35, 25, 0, 0, 8, 25, 15, [bite, smash])
-dark_knight = Monster("Dark Knight", 500, 200, 100, 200, 100, 100, 100, 100, [heart_curse])
+weak_goblin = Monster("Weak Goblin", 55, 15, 35, 0, 0, 5, 15, 15, [bite, smash, bite])
+spear_goblin = Monster("Spear Goblin", 65, 21, 45, 0, 0, 8, 11, 21, [spear_throwing, bite])
+bow_goblin = Monster("Bow Goblin", 75, 23, 55, 0, 0, 3, 7, 25, [shoot, bite])
+slime = Monster("Slime", 25, 5, 15, 0, 0, 5, 5, 12, [gulping, bite])
+slimemorph = Monster("Slimemorph", 100, 12, 55, 15, 55, 15, 15, 25, [delusion, gulping, bite])
+weak_fishman = Monster("Weak Fishman", 55, 15, 35, 0, 0, 5, 15, 15, [bite, smash, bite])
+spear_fishman = Monster("Spear Fishman", 65, 21, 45, 0, 0, 8, 11, 21, [spear_throwing, bite])
+bow_fishman = Monster("Bow Fishman", 75, 23, 55, 0, 0, 3, 7, 25, [shoot, bite])
+weak_skeleton = Monster("Weak Skeleton", 25, 6, 15, 0, 0, 8, 3, 12, [bone_torner, smash])
+armored_skeleton = Monster("Armored Skeleton", 115, 25, 20, 0, 0, 8, 25, 28, [bone_spike, bone_torner, smash])
+
+dark_mage = Monster("Dark Mage", 150, 25, 75, 100, 250, 50, 35, 100, [lesser_dark_hit, lesser_curse])
+dark_knight = Monster("Dark Knight", 500, 180, 100, 180, 100, 100, 100, 250, [dark_dimension, heart_curse, smash])
