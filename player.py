@@ -33,7 +33,7 @@ class Player:
         print(f"Agility: {player.agility}")
         print(f"Defense: {player.defense}")
         print(f"Luck: {player.luck}")
-        print(f"Skills: {', '.join(player.skills)}")
+        print(f"Skills: {[skill.name for skill in player.skills]}")
         print()
 
     def check_exp(player):

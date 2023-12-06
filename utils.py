@@ -14,8 +14,8 @@ def choose_menu():
 def choose_skill(player):
     display_menu(player.skills)
     skill_index = get_numeric_input("Enter the number of the skill: ", 1, len(player.skills))
-    choosen_skill_name = player.skills[skill_index - 1]
-    return book_of_skill.get(choosen_skill_name)
+    chosen_skill = player.skills[skill_index - 1]
+    return chosen_skill
 
 def player_attack(player, monster, skill):
     damage = calculate_damage(player, skill, monster)
