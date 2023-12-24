@@ -23,16 +23,24 @@ def main():
             citadel_heal(player)  # Player can choose to heal in the Citadel
             print("Healing in Citadel...")
             choice = choose_menu(menus.values())
-        elif choice == 7: # Current stats
+        elif choice == list(menus.keys())[-3]: # Current stats
             player.display_stats()
             choice = choose_menu(menus.values())
-        elif choice == 8:  # Save and Quit
+        elif choice == list(menus.keys())[-2]: # Current storage
+            storage_menu(player)
+            choice = choose_menu(menus.values())
+        elif choice == list(menus.keys())[-1]:  # Save and Quit
             save_game(player)
             print("Game saved. Quitting.")
             break
         elif choice in menus: # In one of the hunting grounds
             if choice == 6: # Boss Pick
                 chosen_tier = choose_boss_tier(boss_menus)
+
+                if chosen_tier == None: # Flee..
+                    choice = choose_menu(menus.values())
+                    continue
+
                 current_monster = chosen_tier.choose_random_monster()
             else:
                 current_area = menus[choice]
@@ -41,8 +49,10 @@ def main():
 
             # Error in inputs
             if current_monster == None:
+                choice = choose_menu(menus.values())
                 continue
 
+            # If it's a regular input
             moving, choice = battle(player, current_monster)
 
             if moving == True:

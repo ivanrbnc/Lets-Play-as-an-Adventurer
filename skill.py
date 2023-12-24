@@ -8,13 +8,18 @@ class Skill:
 
     def __str__(self):
         return self.name
-
+    
+    def __eq__(self, other):
+        if isinstance(other, Skill):
+            return self.name == other.name
+        return False
+       
 # Base Skill For All
 punch = Skill("Punch", 0.1, 0, 0.0, 0)
 
 # Player
 stab = Skill("Stab", 0.35, 5, 0.0, 0)
-wish = Skill("Wish", 0.0, 0, 0.35, 5)
+spark = Skill("Spark", 0.0, 0, 0.35, 5)
 flee = Skill("Flee", 0.0, 0, 0.0, 0)
 
 # Monster
